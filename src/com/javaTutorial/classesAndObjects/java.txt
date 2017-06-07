@@ -1,0 +1,28 @@
+2) What is polymorphism, Encapsulation and abstraction ? 
+	a) What is polymorphism ? 
+		Polymorphism gives us the ultimate flexibility in extensibility. The abiltiy to define more than one function with the same name is called Polymorphism. 
+		In java,c++ there are two type of polymorphism: compile time polymorphism (overloading) and runtime polymorphism (overriding).
+		When you override methods, JVM determines the proper methods to call at the program’s run time, not at the compile time. 
+		Overriding occurs when a class method has the same name and signature as a method in parent class.
+		
+	b) What is Encapsulation ?
+		Encapsulation is the technique of making the fields in a class private and providing access to the fields via public methods. 
+		If a field is declared private, it cannot be accessed by anyone outside the class, thereby hiding the fields within the class. 
+		For this reason, encapsulation is also referred to as data hiding.
+		Encapsulation can be described as a protective barrier that prevents the code and data being randomly accessed by other code defined 
+		outside the class. Access to the data and code is tightly controlled by an interface.
+		The main benefit of encapsulation is the ability to modify our implemented code without breaking the code of others who use our code. 
+		With this feature Encapsulation gives maintainability, flexibility and extensibility to our code.
+	c) Abstraction ?
+		If a class is abstract and cannot be instantiated, the class does not have much use unless it is subclass. 
+		This is typically how abstract classes come about during the design phase. A parent class contains the common functionality of a 
+		collection of child classes, but the parent class itself is too abstract to be used on its own.	
+3) what is difference between method overriding and overloading ?
+Ans: a) First and most important difference between method overloading and overriding is that, 
+		In case of method overloading in Java, Signature of method changes while in case of method overriding it remain same.
+	b) Second major difference between method overloading vs overriding in Java is that You can overload method in one class but 
+		overriding can only be done on subclass.
+	c) You can not override static, final and private method in Java but you can overload static, final or private method in Java.
+	d) Overloaded method in Java is bonded by static binding and overridden methods are subject to dynamic binding.
+	e) Private and final method can also be not overridden in Java.
+	
