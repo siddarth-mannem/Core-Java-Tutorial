@@ -1,0 +1,108 @@
+
+1)
+  Write a Java program by using two for loops to produce the output shown below:
+  *******
+  ******
+  *****
+  ****
+  ***
+  **
+  *
+
+  Solution:
+    public class JavaExercises {
+
+        public static void main(String[] args) {
+          printStars();
+        }
+
+        static void printStars(){
+
+            int i,j;
+            for(i=0;i<=6;i++){
+              for(j=1;j<=7-i;j++) {System.out.print("*") };
+              System.out.println("");
+            }
+         }
+    }
+
+    ------------------------------------------------
+
+    Enter the number of rows and columns of matrix
+    Rows : 9
+    Columns : 9
+    Row you entered --> 9
+    Columns you entered --> 9
+     *********
+      *******
+       *****
+        ***
+         *
+        ***
+       *****
+      *******
+     *********
+    Enter the number of rows and columns of matrix
+    Rows :
+
+
+--------------------------------------------------------------------
+2)
+  Write a Java program by using three for loops to print the following pattern:
+  1******
+  12*****
+  123****
+  1234***
+  12345**
+  123456*
+  1234567
+
+  Solution:
+      public class JavaExercises {
+        public static void main(String[] args) {
+            printPattern();
+        }
+
+        static void printPattern(){
+          int i,j,k;
+          for (i = 1; i <= 7; i++) {
+              for (j = 1; j <= i; ++j)
+                System.out.print(j);
+                for (k = 7 - i; k >= 1; k--)
+                  System.out.print("*");
+                  System.out.println("");
+          }
+        }
+      }
+
+--------------------------------------------------------------------
+3)
+  Check if given input number from console is Prime number or Not.
+  Input from Console: Enter a Number: <>
+  Output in Console: The number you entered is Prime number
+--------------------------------------------------------------------
+4)
+  Write a program called SumAndAverage to produce the sum of 1, 2, 3, ..., to 100. Also compute and display the average
+  Solution:
+      /*
+       * Compute the sum and average of running numbers from a lowerbound to an upperbound using loop.
+       */
+      public class SumAndAverage {   // Save as "SumAndAverage.java"
+         public static void main (String[] args) {
+            int sum = 0;          // Store the accumulated sum, init to 0
+            double average;       // average in double
+            int lowerbound = 1;   // The lowerbound to sum
+            int upperbound = 100; // The upperbound to sum
+
+            // Use a for-loop to sum from lowerbound to upperbound
+            for (int number = lowerbound; number <= upperbound; ++number) {
+               sum += number;     // same as "sum = sum + number"
+            }
+            // Compute average in double. Beware that int/int produces int.
+            ......
+            // Print sum and average.
+            ......
+         }
+      }
+
+  --------------------------------------------------------------------
