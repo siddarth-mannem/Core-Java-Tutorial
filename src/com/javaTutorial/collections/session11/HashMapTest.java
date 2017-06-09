@@ -70,7 +70,7 @@ public class HashMapTest {
 			System.out.println(cust.getFirstName());
 		}
 		
-		System.out.println("Using For Loop ----------------------------------");
+		System.out.println("Using For Loop ----------------------------------****");
 		// Iterating hashMap in for loop
 		for(Map.Entry<String, Customer> custMap : customerMap.entrySet()) {
 
