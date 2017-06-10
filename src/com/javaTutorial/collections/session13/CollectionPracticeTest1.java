@@ -33,7 +33,7 @@ public class CollectionPracticeTest1 {
 		
 		for(Person person: persons) {
 			
-			System.out.println("------Person Details-----");
+			System.out.println("------Person Details-----***********");
 			System.out.println(person.getFirstName());
 			System.out.println(person.getLastName());
 			System.out.println(person.getPassportNum());
