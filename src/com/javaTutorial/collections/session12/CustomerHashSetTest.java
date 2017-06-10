@@ -34,7 +34,7 @@ public class CustomerHashSetTest {
 		customers.add(customer5);
 		
 		for( Customer c: customers ){
-			System.out.println("FirstName: " + c.getFirstName());
+			System.out.println("FirstName:****  " + c.getFirstName());
 		}
 	}
 
