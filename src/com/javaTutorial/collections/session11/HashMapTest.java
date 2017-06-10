@@ -79,7 +79,5 @@ public class HashMapTest {
 			Customer cust = custMap.getValue();
 			System.out.println("In For loop and Firstname is: " + cust.getFirstName() + " and Age:" + cust.getAge());
 		}
-		
-		
 	}
 }
