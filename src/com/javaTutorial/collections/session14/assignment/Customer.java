@@ -6,18 +6,17 @@ public class Customer {
 
 	private String firstName;
 	private String lastName;
-	private Date dob;
 	private double height;
 	private double weight;
 	private int age;
 	private String gender;
-	public Customer(String firstName, String lastName, Date dob, double height, double weight, int age, String gender) {
+	
+	public Customer(String firstName, String lastName,  double height, double weight,int age, String gender) {
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.dob = dob;
 		this.height = height;
 		this.weight = weight;
-		this.age = age;
+		this.age= age;
 		this.gender = gender;
 	}
 	public String getFirstName() {
@@ -32,12 +31,7 @@ public class Customer {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	public Date getDob() {
-		return dob;
-	}
-	public void setDob(Date dob) {
-		this.dob = dob;
-	}
+	
 	public double getHeight() {
 		return height;
 	}

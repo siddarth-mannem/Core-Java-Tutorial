@@ -1,44 +1,76 @@
 package com.javaTutorial.collections.session14.assignment;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-import com.javaTutorial.collections.session14.Student;
-import com.javaTutorial.collections.session14.StudentAgeComparator;
 
 public class CustomerComparatorTest {
 
 	public static void main(String[] args) {
 		
-		
-   Random comage = new Random();
-		
-		
-		List<Customer> customersList = new ArrayList<>();
-		Customer customerToAdd;
-		for(int i=1; i <=10; i++) {
-			int age = comage.nextInt(50) + 1;
-			
-			customerToAdd = new Customer("sowjanya"+i, "adapa"+i, age, 22222222 + i,
-										5555555+i, "HYU3534"+i, 6.0 + i, 170 + i);
-			studentsList.add(studentToAdd);
-		}
-		
-		// It will print what data we created
-		System.out.println("Before Sorting by age...");
-		for(Student st : studentsList) {
-			System.out.println("Age: " + st.getAge());
-		}
-		
-		Collections.sort(studentsList, new StudentAgeComparator());
 
-		System.out.println("---------------------------After Sotring by Age...\n");
-		for(Student st : studentsList) {
-			System.out.println("Age: " + st.getAge());
-		}
+	List<Customer> customers = new ArrayList<>();
+	
+	Customer customer1 = new Customer("sowjanya","adapa", 5.4d, 150.00, 24, "female");
+	
+	Customer customer3 = new Customer("sandeep","oruganti", 5.9d , 195.00, 28, "Male");
+	
+	Customer customer2 = new Customer("sruthi","adapa", 5.7d , 180.00, 26, "female");
+	
+	
+	
+	
+	customers.add(customer1);
+	customers.add(customer3);
+	customers.add(customer2);
+	
+	System.out.println("----Before sorting Age-----");
+	
+	for(int i=0;i<customers.size();i++){
+		
+		Customer customer=customers.get(i);
+		
+		System.out.println(customer.getFirstName() + " age is " + customer.getAge());
 		
 	}
-
+	
+	System.out.println("------After sorting Age-------");
+	
+	Collections.sort(customers, new AgeComparator());
+	
+for(int i=0;i<customers.size();i++){
+		
+		Customer customer=customers.get(i);
+		
+		System.out.println(customer.getFirstName() + " age is " + customer.getAge());
+		
+	}
+	
+System.out.println("----------Before Sorting Height------");
+for(int i=0;i<customers.size();i++){
+	
+	Customer customer=customers.get(i);
+	
+	System.out.println(customer.getFirstName() + " height is " + customer.getHeight());
+	
 }
+
+System.out.println("----------After Sorting Height--------");
+    
+     Collections.sort(customers, new HeightComparator());
+     for(int i=0;i<customers.size();i++){
+    		
+    		Customer customer=customers.get(i);
+    		
+    		System.out.println(customer.getFirstName() + " height is " + customer.getHeight());
+    		
+    	}
+		
+     
+     
+	}
+	
+}	
