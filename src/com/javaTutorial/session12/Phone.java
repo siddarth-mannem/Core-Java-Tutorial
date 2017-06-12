@@ -12,7 +12,7 @@ public class Phone {
      private double size;
      
 	public Phone(long number, String maker, String model, int areaCode, String type, boolean vr, double size) {
-		super();
+		
 		this.number = number;
 		this.maker = maker;
 		this.model = model;

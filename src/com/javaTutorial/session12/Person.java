@@ -18,7 +18,7 @@ public class Person {
 	
 	public Person(String firstName, String lastName, String dob, long ssn, long taxId, String passportNum,
 			Address address1, Phone phone, List<Order> order) {
-		super();
+		
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.dob = dob;

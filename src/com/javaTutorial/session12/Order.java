@@ -13,7 +13,7 @@ public class Order {
 	 
 	 public Order(long orderId, String itemName, long trackingNumber, double price, String orderStatus,
 				String orderedDate, String deliveredDate) {
-			super();
+			
 			this.orderId = orderId;
 			this.itemName = itemName;
 			this.trackingNumber = trackingNumber;

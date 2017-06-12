@@ -9,7 +9,7 @@ public class Address {
 	private long zipCode;
 	
 	public Address(String addressLine1, String addressLine2, String city, String state, long zipCode) {
-		super();
+		
 		this.addressLine1 = addressLine1;
 		this.addressLine2 = addressLine2;
 		this.city = city;
