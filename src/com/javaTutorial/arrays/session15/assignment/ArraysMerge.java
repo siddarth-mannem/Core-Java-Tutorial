@@ -14,6 +14,7 @@ public class ArraysMerge {
 				array1[i]=array2[j];
 				j++;
 			}
+			
 		}
 		
 		System.out.println("--------After Merging Arrays and Before Sorting--------");
