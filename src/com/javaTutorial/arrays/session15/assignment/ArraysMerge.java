@@ -19,14 +19,14 @@ public class ArraysMerge {
 		
 		System.out.println("--------After Merging Arrays and Before Sorting--------");
 		
-			System.out.print(Arrays.toString(array1));
+			System.out.print("aa =" +Arrays.toString(array1));
 		
 		System.out.println();
 		System.out.println("------After Sorting--------");
 		
 		Arrays.sort(array1);
 		
-		System.out.print(Arrays.toString(array1));
+		System.out.print("aa =" +Arrays.toString(array1));
 
 		
 	}
