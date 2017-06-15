@@ -1,4 +1,4 @@
-package com.assignments.session12;
+package com.javaTutorial.collections.session12.assignment;
 
 import java.util.ArrayList;
 import java.util.List;

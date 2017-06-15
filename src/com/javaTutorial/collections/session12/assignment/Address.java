@@ -1,4 +1,4 @@
-package com.assignments.session12;
+package com.javaTutorial.collections.session12.assignment;
 
 public class Address {
 	
