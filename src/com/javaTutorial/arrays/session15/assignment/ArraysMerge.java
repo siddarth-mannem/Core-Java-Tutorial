@@ -5,8 +5,8 @@ import java.util.Arrays;
 public class ArraysMerge {
 
 	public static void main(String[] args) {
-		int[] array1 = {12,25,9,23,0,0,0};
-		int[] array2 = {27,35,31};
+		int[] array1 = {12,0,9,23,0,0,0};
+		int[] array2 = {45,27,35,31};
 		int j=0;
 		
 		for(int i=0; i<array1.length; i++){
