@@ -18,17 +18,16 @@ public class ArraysMerge {
 		}
 		
 		System.out.println("--------After Merging Arrays and Before Sorting--------");
-		for(int i=0;i<array1.length;i++){
-			System.out.print(array1[i] + " ");
-		}
+		
+			System.out.print(Arrays.toString(array1));
+		
 		System.out.println();
 		System.out.println("------After Sorting--------");
 		
 		Arrays.sort(array1);
 		
-		for(int i=0;i<array1.length;i++){
-			System.out.print(array1[i] + " ");
-		}
+		System.out.print(Arrays.toString(array1));
+
 		
 	}
 
