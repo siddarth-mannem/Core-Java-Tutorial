@@ -70,7 +70,7 @@ public class BinaryTreeTest {
 		 
 		for(int k = 0; k< inputData.size(); k++) {
 			tree3.insert(inputData.get(k));
-			if(k == 5) {
+			if(k == 10) {
 				break;
 			}
 		}
@@ -79,7 +79,10 @@ public class BinaryTreeTest {
 		System.out.println("Print inorder after swapping : ");
 		tree3.collectInOrder().forEach(System.out::println);
 		System.out.println("---------------Tree top view-----------------");
-		tree3.printTree();
+		//tree3.printTree();
+		tree3.print();
+		
+		tree3.printNodesAtLevel(5);
 		
 	}
 	

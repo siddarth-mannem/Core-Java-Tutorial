@@ -2,6 +2,7 @@ package com.javaCodeChallenge.graphs;
 
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedList;
 
 /**
  * 
@@ -32,6 +33,13 @@ public class Graph {
 		s.getAdjacentNodes().add(d);	
 	}
 	
+	/**
+	 * Depth First Search (DFS)
+	 * 
+	 * @param source
+	 * @param dest
+	 * @return
+	 */
 	public boolean hasPathDFS(int source, int dest) {
 		
 		GNode s = getNode(source);
@@ -42,11 +50,55 @@ public class Graph {
 		return hasPathDFS(s, d, visited);
 	}
 	
+	
 	private boolean hasPathDFS(GNode source, GNode dest, HashSet<Integer> visited) {
 	
+		if(visited.contains(source.getId())) {
+			return false;
+		}
+		visited.add(source.getId());
+		if(source == dest) {
+			return true;
+		}
+		
+		for( GNode node: source.getAdjacentNodes()) {
+			if(hasPathDFS(node, dest, visited)) {
+				return true;
+			}
+		}
 		
 		return false;
 	}
+	
+	/**
+	 * Breadth First Search (BFS)
+	 * 
+	 * @param source
+	 * @param dest
+	 * @return
+	 */
+	private boolean hasPathBFS(GNode source, GNode dest) {
+		
+		LinkedList<GNode> nextToVisit = new LinkedList<>();
+		HashSet<Integer> visited = new HashSet<>();
+		nextToVisit.add(source);
+		while(!nextToVisit.isEmpty()) {
+			GNode removedNode = nextToVisit.remove();
+			if(removedNode.getId() == dest.getId()) {
+				return true;
+			}
+			if(visited.contains(removedNode.getId())) {
+				continue;
+			}
+			
+			visited.add(removedNode.getId());
+			for(GNode child: removedNode.getAdjacentNodes()) {
+				nextToVisit.add(child);
+			}
+		}
+		return false;
+	}
+	
 	
 	
 }

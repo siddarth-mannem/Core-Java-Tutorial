@@ -28,15 +28,18 @@ public class ReverseWordsInAStringTest {
 
 		String copyOfOrig = s;
 		String resultString = "";
+		StringBuilder sb = new StringBuilder("");
 		if(copyOfOrig == null) {
-			return resultString;
+			//return resultString;
+			return sb.toString();
 		}
 		int inputLength = copyOfOrig.length();
 
 		for(int i=(inputLength - 1); i >= 0; i--) {
 
 			if(Character.isWhitespace(copyOfOrig.charAt(i) )) {
-				if(resultString == "") {
+				//if(resultString == "") {
+				if(sb.length() == 0) {
 					continue;
 				}
 			}
@@ -48,9 +51,19 @@ public class ReverseWordsInAStringTest {
 				int startIndexOfLastWord3 = copyOfOrig.lastIndexOf(" ", k);
 
 				String word = copyOfOrig.substring(startIndexOfLastWord3 + 1, k+1);
-				resultString = resultString + word + " ";
+				//resultString = resultString + word + " ";
+				sb.append(word + " ");
 				if(k<0 || k - word.length()<=0) {
-					resultString = resultString.substring(0, resultString.length()-1);
+					//resultString = resultString.substring(0, resultString.length()-1);
+					boolean isLastCharSpace = true;
+					while(isLastCharSpace) {
+						if(sb.charAt(sb.length()-1) == ' ') {
+							sb.deleteCharAt(sb.length()-1);
+							continue;
+						}
+						isLastCharSpace = false;
+						
+					}
 					break;
 				}
 				copyOfOrig = copyOfOrig.substring(0, k - word.length());
@@ -58,7 +71,7 @@ public class ReverseWordsInAStringTest {
 			}
 		}
 		
-		return resultString;
+		return sb.toString();
 	}
 
 	public static String readCharsFromWord(String subString, int i) {

@@ -6,7 +6,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Queue;
+import java.util.Set;
 import java.util.TreeMap;
+import java.util.TreeSet;
 
 /**
  * 
@@ -148,6 +150,7 @@ public class BinaryTree {
 		}
 	}
 	
+	// "InOrder" prints in order of LeftNode -> ParentNode -> RightNode
 	public List<Integer> collectInOrder() {
 		
 		List<Integer> orderedItems = new ArrayList<>();
@@ -156,8 +159,7 @@ public class BinaryTree {
 		return orderedItems;
 	}
 	
-	// "InOrder" prints in order of LeftNode -> ParentNode -> RightNode
-	public void collectInOrder(List<Integer> orderedItems, Node node) {
+	private void collectInOrder(List<Integer> orderedItems, Node node) {
 		
 		if(node.getLeft() != null) {
 			collectInOrder(orderedItems, node.getLeft());
@@ -170,7 +172,12 @@ public class BinaryTree {
 		
 	}
 
-	
+	/**
+	 * Compare if InOrder LinkedList equals to the Tree.
+	 * 
+	 * @param inOrderedList
+	 * @return
+	 */
 	public boolean compareTree(List<Integer> inOrderedList) {
 		
 		return compareTree(inOrderedList, this.getRoot());
@@ -230,6 +237,7 @@ public class BinaryTree {
 	
 	/**
 	 * Check if Tree is Binary or not
+	 * 
 	 * https://www.hackerrank.com/challenges/is-binary-search-tree/problem
 	 * @param root
 	 * @return
@@ -307,6 +315,177 @@ public class BinaryTree {
 	        node.setLeft(node.getRight());
 	        node.setRight(temp);
 	    }
+    }
+    
+    /**
+     * DFS
+     * Ascending order of Nodes at Kth Level of a Tree
+     * 
+     * @param level
+     * @param nodesToVisit
+     * @param sortedNodeValues
+     */
+    public void printNodesAtLevel(int level) {
+    
+    	Queue<Node> nodesToVisit = new LinkedList<Node>();
+    	nodesToVisit.add(getRoot());
+    	
+    	Set<Integer> sortedNodeValues = new TreeSet<>((Integer i, Integer j) -> {return i-j;});
+    	printNodesAtLevel(level, nodesToVisit, sortedNodeValues);
+    	System.out.println("Sorted Node values at Level " + level + " : " + sortedNodeValues);
+    }
+
+    private void printNodesAtLevel(int level, Queue<Node> nodesToVisit, Set<Integer> sortedNodeValues) {
+    
+    	Node node = nodesToVisit.poll();
+		
+		if(level == 1) {
+			sortedNodeValues.add(node.getData());
+			return;
+		}
+		
+		if(level > 1) {
+			if(node.getLeft() != null) {
+				nodesToVisit.add(node.getLeft());
+				printNodesAtLevel(level - 1, nodesToVisit, sortedNodeValues);
+			}
+			
+			if(node.getRight() != null) {
+				nodesToVisit.add(node.getRight());
+				printNodesAtLevel(level - 1, nodesToVisit, sortedNodeValues);
+			}
+		}
+    }
+    
+	public void printTreeDiagram() {
+		StringBuilder buffer = new StringBuilder(50);
+		printTreeDiagram(buffer, "", "", getRoot());
+		System.out.println(buffer.toString());
+	}
+	private void printTreeDiagram(StringBuilder buffer, String prefix, String childrenPrefix, Node node) {
+        buffer.append(prefix);
+        buffer.append(node.getData());
+        buffer.append('\n');
+        
+        if(node.getLeft() != null) {
+    		printTreeDiagram(buffer, childrenPrefix + "├── ", childrenPrefix + "│   ", node.getLeft());
+    	}
+        if(node.getRight() != null) {
+        	printTreeDiagram(buffer, childrenPrefix + "├── ", childrenPrefix + "│   ", node.getRight());
+        }
+    }
+	
+	public void print() {
+		
+		print(getRoot());
+	}
+	
+	private void print(Node root)
+    {
+        List<List<String>> lines = new ArrayList<List<String>>();
+
+        List<Node> level = new ArrayList<Node>();
+        List<Node> next = new ArrayList<Node>();
+
+        level.add(root);
+        int nn = 1;
+
+        int widest = 0;
+
+        while (nn != 0) {
+            List<String> line = new ArrayList<String>();
+
+            nn = 0;
+
+            for (Node n : level) {
+                if (n == null) {
+                    line.add(null);
+
+                    next.add(null);
+                    next.add(null);
+                } else {
+                    String aa = String.valueOf(n.getData());
+                    line.add(aa);
+                    if (aa.length() > widest) widest = aa.length();
+
+                    next.add(n.getLeft());
+                    next.add(n.getRight());
+                    
+
+                    if (n.getLeft() != null) nn++;
+                    if (n.getRight() != null) nn++;
+                }
+            }
+
+            if (widest % 2 == 1) widest++;
+
+            lines.add(line);
+
+            List<Node> tmp = level;
+            level = next;
+            next = tmp;
+            next.clear();
+        }
+
+        int perpiece = lines.get(lines.size() - 1).size() * (widest + 4);
+        for (int i = 0; i < lines.size(); i++) {
+            List<String> line = lines.get(i);
+            int hpw = (int) Math.floor(perpiece / 2f) - 1;
+
+            if (i > 0) {
+                for (int j = 0; j < line.size(); j++) {
+
+                    // split node
+                    char c = ' ';
+                    if (j % 2 == 1) {
+                        if (line.get(j - 1) != null) {
+                            c = (line.get(j) != null) ? '┴' : '┘';
+                        } else {
+                            if (j < line.size() && line.get(j) != null) c = '└';
+                        }
+                    }
+                    System.out.print(c);
+
+                    // lines and spaces
+                    if (line.get(j) == null) {
+                        for (int k = 0; k < perpiece - 1; k++) {
+                            System.out.print(" ");
+                        }
+                    } else {
+
+                        for (int k = 0; k < hpw; k++) {
+                            System.out.print(j % 2 == 0 ? " " : "─");
+                        }
+                        System.out.print(j % 2 == 0 ? "┌" : "┐");
+                        for (int k = 0; k < hpw; k++) {
+                            System.out.print(j % 2 == 0 ? "─" : " ");
+                        }
+                    }
+                }
+                System.out.println();
+            }
+
+            // print line of numbers
+            for (int j = 0; j < line.size(); j++) {
+
+                String f = line.get(j);
+                if (f == null) f = "";
+                int gap1 = (int) Math.ceil(perpiece / 2f - f.length() / 2f);
+                int gap2 = (int) Math.floor(perpiece / 2f - f.length() / 2f);
+
+                // a number
+                for (int k = 0; k < gap1; k++) {
+                    System.out.print(" ");
+                }
+                System.out.print(f);
+                for (int k = 0; k < gap2; k++) {
+                    System.out.print(" ");
+                }
+            }
+            System.out.println();
+
+            perpiece /= 2;
+        }
     }
 
 	/**

@@ -21,8 +21,8 @@ public class StringReOrganize {
 
 	public static void main(String[] args) {
 		
-		String s = "aab";
-
+		//String s = "aab";
+		String s = "bbbaa";
 		System.out.println(reOrganizeString(s));
 	}
 	
@@ -39,9 +39,11 @@ public class StringReOrganize {
 		Comparator<Character> charCompare = (Character c1, Character c2) -> {
 			return charsCountMap.get(c2) - charsCountMap.get(c1);
 		};
-		
+		System.out.println("KeySet: " + charsCountMap.keySet());
 		PriorityQueue<Character> charMaxHeap = new PriorityQueue<>(charCompare);
 		charMaxHeap.addAll(charsCountMap.keySet());
+		
+		System.out.println("charMaxHeap : " + charMaxHeap);
 		
 		while(charMaxHeap.size() > 1) {
 			Character currentChar = charMaxHeap.remove();

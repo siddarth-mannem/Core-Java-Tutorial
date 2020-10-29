@@ -9,7 +9,7 @@ package com.javaCodeChallenge.arrays;
  * @Created Oct 22, 2020
  *
  */
-public class ArrayPath2 {
+public class UniquePathsIIMatrix {
 
 	public static void main(String[] args) {		
 //		int[][] matrix = {
