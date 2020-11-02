@@ -64,17 +64,19 @@ public class BinaryTreeTest {
 		
 		System.out.println("Is Tree2 Binary format  ? " + tree2.checkBST());
 		
-		System.out.println("Swap Nodes at Kth Level ----------------------------------");
-		
 		BinaryTree tree3 = new BinaryTree();
 		 
 		for(int k = 0; k< inputData.size(); k++) {
 			tree3.insert(inputData.get(k));
-			if(k == 10) {
+			if(k == 7) {
 				break;
 			}
 		}
-		
+
+		System.out.println("Swap Nodes at Kth Level ----------------------------------");
+		System.out.println("---------------Tree top view Before Swap-----------------");
+		tree3.print();
+
 		tree3.swapNodesFromLevel(2);
 		System.out.println("Print inorder after swapping : ");
 		tree3.collectInOrder().forEach(System.out::println);
@@ -84,6 +86,22 @@ public class BinaryTreeTest {
 		
 		tree3.printNodesAtLevel(5);
 		
+		System.out.println("-----------------Convert BST to GST----------------------");
+		BinaryTree tree4 = new BinaryTree();
+		 
+		for(int k = 0; k< inputData.size(); k++) {
+			tree4.insert(inputData.get(k));
+			if(k == 7) {
+				break;
+			}
+		}
+		System.out.println("-----with new instance-------");
+		BinaryTree newGstTree = tree4.bstToGst1();
+		newGstTree.print();
+		System.out.println("-----without new instance-------");
+		tree4.bstToGst();
+		tree4.print();
+
 	}
 	
 	public static void insertData(BinaryNode rootNode, int value) {
