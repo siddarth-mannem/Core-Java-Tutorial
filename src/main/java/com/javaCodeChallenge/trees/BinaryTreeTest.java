@@ -1,6 +1,7 @@
 package com.javaCodeChallenge.trees;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -62,7 +63,7 @@ public class BinaryTreeTest {
 		System.out.println("----------------------------------");
 		System.out.println("Is Tree1 equals to Tree2  ? " + tree2.compareTree(orderedNodes));
 		
-		System.out.println("Is Tree2 Binary format  ? " + tree2.checkBST());
+		System.out.println("Is Tree2 Binary format  ? " + tree2.isBinarySearchTree());
 		
 		BinaryTree tree3 = new BinaryTree();
 		 
@@ -101,7 +102,41 @@ public class BinaryTreeTest {
 		System.out.println("-----without new instance-------");
 		tree4.bstToGst();
 		tree4.print();
-
+		
+		
+		System.out.println("-----------------Balanced Binary tree from sorted Arrays----------------------");		
+		List<Integer> inputData2 = new ArrayList<>(inputData);
+		Collections.sort(inputData2);
+		BalancedBinaryTreeFromSortedArray balancedTree1 = new BalancedBinaryTreeFromSortedArray();
+		balancedTree1.sortedArray(inputData2.stream().mapToInt((Integer k) -> k.intValue()).toArray());
+		balancedTree1.print();
+		System.out.println("balancedTree1 is Balanced Tree : " + balancedTree1.isBalancedBinaryTree());
+		
+		System.out.println("-----------------Convert Existing Binary tree to balanced binary tree----------------------");
+		BinaryTree tree5 = new BinaryTree();
+		 
+		for(int k = 0; k< inputData.size(); k++) {
+			tree5.insert(inputData.get(k));
+			if(k == 7) {
+				break;
+			}
+		}
+		// [14,9,16,2,13]
+//		int[] nums = {14,9,16,2,13};
+//		for(int k = 0; k<nums.length; k++) {
+//			tree5.insert(nums[k]);
+//		}
+		
+		System.out.println("-----Before balancing a Tree -----");
+		tree5.print();
+		System.out.println("-----After balancing a Tree -----");
+		tree5.balanceBinaryTree();
+		tree5.print();
+		tree5.printPreOrder();
+		System.out.println("tree5 is Balanced Tree : " + tree5.isBalancedBinaryTree());
+		
+		System.out.println("--------------------------------------------------------");
+		
 	}
 	
 	public static void insertData(BinaryNode rootNode, int value) {

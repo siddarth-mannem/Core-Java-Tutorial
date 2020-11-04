@@ -83,18 +83,37 @@ public class BinaryTree {
 	}
 
 
+	// "InOrder" prints in order of LeftNode -> ParentNode -> RightNode
 	public void printInOrder() {
 		printInOrder(root);
+		System.out.println("");
 	}
 
-	// "InOrder" prints in order of LeftNode -> ParentNode -> RightNode
-	public void printInOrder(Node node) {
+	private void printInOrder(Node node) {
 
 		if(node.getLeft() != null) {
 			printInOrder(node.getLeft());
 		}
 
-		System.out.println(node.getData());
+		System.out.print(node.getData() + ", ");
+
+		if(node.getRight() != null) {
+			printInOrder(node.getRight());
+		}
+	}
+	
+	// "PreOrder" prints in order of ParentNode -> LeftNode -> RightNode
+	public void printPreOrder() {
+		printPreOrder(root);
+		System.out.println("");
+	}
+	private void printPreOrder(Node node) {
+
+		System.out.print(node.getData() + ", ");
+
+		if(node.getLeft() != null) {
+			printInOrder(node.getLeft());
+		}
 
 		if(node.getRight() != null) {
 			printInOrder(node.getRight());
@@ -124,7 +143,15 @@ public class BinaryTree {
 	}
 
 	/**
-	 * Compare if InOrder LinkedList equals to the Tree.
+	 * Q: Compare if InOrder LinkedList equals to the Tree. OR
+	 * Q: How to compare 2 trees.
+	 * 
+	 * Solution: 
+	 * 		1)	convert Tree1 to InOrder List
+	 * 		2)	Traverse Tree2 also in InOrder.
+	 * 		3)	Now compare first Element of Tree2 node data with Tree1 InOrder list firts element.
+	 * 		4)	return false if two element's data is not matching
+	 *		5)	IF matches then delete the Tree1 List first element and repeat the step 2,3,4 through recursive method
 	 * 
 	 * @param inOrderedList
 	 * @return
@@ -193,7 +220,7 @@ public class BinaryTree {
 	 * @param root
 	 * @return
 	 */
-	boolean checkBST() {
+	public boolean isBinarySearchTree() {
 
 		if(getRoot() == null) {
 			return true;
@@ -202,7 +229,7 @@ public class BinaryTree {
 		return checkBSTUtil(getRoot());
 	}
 
-	boolean checkBSTUtil(Node root) {
+	private boolean checkBSTUtil(Node root) {
 
 		if(root == null) {
 			return true;
@@ -221,12 +248,16 @@ public class BinaryTree {
 				return false;
 			}
 		}
+		
+		boolean isBst = checkBSTUtil(root.getLeft()) && checkBSTUtil(root.getRight());
+		//System.out.println(isBst ? "Yes" : "No");
 
-		return checkBSTUtil(root.getLeft()) && checkBSTUtil(root.getRight());
+		return isBst;
 	}
 
 	/**
 	 * Calculate Height a Binary Tree
+	 * Def: The height of a binary tree is the number of edges between the tree's root and its furthest leaf
 	 * https://www.hackerrank.com/challenges/tree-height-of-a-binary-tree/problem
 	 * 
 	 * @return
@@ -235,7 +266,7 @@ public class BinaryTree {
 		return heightUtil(getRoot());
 	}
 
-	static int heightUtil(Node root) {
+	private int heightUtil(Node root) {
 		if (root == null) {
 			return 0;
 		}
@@ -245,10 +276,6 @@ public class BinaryTree {
 		return Math.max(left, right) + 1;
 	}
 
-	public void mirrorTree() {
-		mirror(getRoot());
-
-	}
 
 	/**
 	 * Given a Binary Tree, convert it into its mirror
@@ -257,7 +284,12 @@ public class BinaryTree {
 	 * 
 	 * @param node
 	 */
-	void mirror(Node node) {
+	public void mirrorTree() {
+		mirror(getRoot());
+
+	}
+
+	private void mirror(Node node) {
 		if(node != null) {
 			mirror(node.getLeft());
 			mirror(node.getRight());
@@ -366,7 +398,6 @@ public class BinaryTree {
 		Node rightNode = null;
 		// RightNode // null
 		if(node.getRight() != null) {
-			
 			rightNode = createNode1(node.getRight(), sum); 
 		}
 		
@@ -378,31 +409,69 @@ public class BinaryTree {
 		// LeftNode // 35
 		Node leftNode = null;
 		if(node.getLeft() != null) {
-
 			leftNode = createNode1(node.getLeft(), sum);
-			
 		}
-		
-		
-//		if(rightNode != null) {
-//			sum.sum = sum.sum + rightNode.getData();
-//		}
-//		
-//		if(leftNode != null) {
-//			sum.sum = sum.sum + leftNode.getData();
-//		}
 		
 		currentNode.setRight(rightNode);
 		currentNode.setLeft(leftNode);
-		
-		//When Node = 35; -> sum = 35
-		//When Node = 40; sum = 75
-		//When Node = 29; sum = 
-		
+
 		return currentNode;
     }
 	
+	/**
+	 * Q: Balance a Binary Search Tree
+	 * Convert existing binary tree to balanced Binary Tree.
+	 * 
+	 * Ref: https://leetcode.com/problems/balance-a-binary-search-tree/
+	 */
+	public void balanceBinaryTree() {
+		
+		List<Integer> inputNums = collectInOrder();
+		if(inputNums == null) {
+			return;
+		}
+		this.root = balanceBinaryTree(inputNums, 0, inputNums.size()-1);
+	}
+
+	private Node balanceBinaryTree(List<Integer> inputNums, int leftIndex, int rightIndex) {
+		
+		if(leftIndex > rightIndex) {
+			return null;
+		}
+		
+		int mid = leftIndex + (rightIndex - leftIndex) / 2;
+		Node currentNode = new Node(inputNums.get(mid));
+		Node currentLeftNode = balanceBinaryTree(inputNums, leftIndex, mid -1);
+		Node currentRightNode = balanceBinaryTree(inputNums, mid + 1, rightIndex);
+		currentNode.setLeft(currentLeftNode);
+		currentNode.setRight(currentRightNode);
+		return currentNode;		
+	}
 	
+	/**
+	 * Check is tree is balanced binary tree or not
+	 * 
+	 * Ref: https://www.youtube.com/watch?v=zu22twD5QI4
+	 * 
+	 * @return
+	 */
+	public boolean isBalancedBinaryTree() {
+		
+		return isBalancedBinaryTree(getRoot());
+	}
+	
+	private boolean isBalancedBinaryTree(Node node) {
+		
+		if(node == null) {
+			return true;
+		}
+		
+		return Math.abs(heightUtil(node.getLeft()) - heightUtil(node.getRight())) < 2 
+				&& isBalancedBinaryTree(node.getLeft()) 
+				&& isBalancedBinaryTree(node.getRight())
+				&& checkBSTUtil(node);
+		
+	}
 
 	public void printTreeDiagram() {
 		StringBuilder buffer = new StringBuilder(50);
@@ -421,58 +490,11 @@ public class BinaryTree {
 			printTreeDiagram(buffer, childrenPrefix + "├── ", childrenPrefix + "│   ", node.getRight());
 		}
 	}
-	
 
-	public void printTree() {
-		topView(getRoot());
-	}
-
-
-	// function should print the topView of 
-	// the binary tree 
-	private void topView(Node root) { 
-		class QueueObj { 
-			Node node;
-			int hd; 
-
-			QueueObj(Node node, int hd) { 
-				this.node = node; 
-				this.hd = hd; 
-			} 
-		} 
-		Queue<QueueObj> q = new LinkedList<QueueObj>(); 
-		Map<Integer, Node> topViewMap = new TreeMap<Integer, Node>(); 
-
-		if (root == null) { 
-			return; 
-		} else { 
-			q.add(new QueueObj(root, 0)); 
-		} 
-
-		System.out.println("The top view of the tree is : "); 
-
-		// count function returns 1 if the container  
-		// contains an element whose key is equivalent  
-		// to hd, or returns zero otherwise. 
-		while (!q.isEmpty()) { 
-			QueueObj tmpNode = q.poll(); 
-			if (!topViewMap.containsKey(tmpNode.hd)) { 
-				topViewMap.put(tmpNode.hd, tmpNode.node); 
-			} 
-
-			if (tmpNode.node.getLeft() != null) { 
-				q.add(new QueueObj(tmpNode.node.getLeft(), tmpNode.hd - 1)); 
-			} 
-			if (tmpNode.node.getRight() != null) { 
-				q.add(new QueueObj(tmpNode.node.getRight(), tmpNode.hd + 1)); 
-			} 
-
-		} 
-		for (Entry<Integer, Node> entry : topViewMap.entrySet()) { 
-			System.out.print(entry.getValue().getData()); 
-		} 
-	}
-
+	/**
+	 * It prints entire Tree in a hierarchy tree structure
+	 * 
+	 */
 	public void print() {
 
 		print(getRoot());
@@ -584,6 +606,56 @@ public class BinaryTree {
 
 			perpiece /= 2;
 		}
+	}
+
+	public void printTree() {
+		topView(getRoot());
+	}
+
+
+	// function should print the topView of 
+	// the binary tree 
+	private void topView(Node root) { 
+		class QueueObj { 
+			Node node;
+			int hd; 
+
+			QueueObj(Node node, int hd) { 
+				this.node = node; 
+				this.hd = hd; 
+			} 
+		} 
+		Queue<QueueObj> q = new LinkedList<QueueObj>(); 
+		Map<Integer, Node> topViewMap = new TreeMap<Integer, Node>(); 
+
+		if (root == null) { 
+			return; 
+		} else { 
+			q.add(new QueueObj(root, 0)); 
+		} 
+
+		System.out.println("The top view of the tree is : "); 
+
+		// count function returns 1 if the container  
+		// contains an element whose key is equivalent  
+		// to hd, or returns zero otherwise. 
+		while (!q.isEmpty()) { 
+			QueueObj tmpNode = q.poll(); 
+			if (!topViewMap.containsKey(tmpNode.hd)) { 
+				topViewMap.put(tmpNode.hd, tmpNode.node); 
+			} 
+
+			if (tmpNode.node.getLeft() != null) { 
+				q.add(new QueueObj(tmpNode.node.getLeft(), tmpNode.hd - 1)); 
+			} 
+			if (tmpNode.node.getRight() != null) { 
+				q.add(new QueueObj(tmpNode.node.getRight(), tmpNode.hd + 1)); 
+			} 
+
+		} 
+		for (Entry<Integer, Node> entry : topViewMap.entrySet()) { 
+			System.out.print(entry.getValue().getData()); 
+		} 
 	}
 
 	/**
