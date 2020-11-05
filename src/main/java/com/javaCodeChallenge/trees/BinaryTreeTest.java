@@ -7,6 +7,8 @@ import java.util.Random;
 
 public class BinaryTreeTest {
 
+	static Node nodeTemp = new Node(3);
+	
 	public static void main(String[] args) {
 
 		List<Integer> inputData = new ArrayList<>();
@@ -133,9 +135,24 @@ public class BinaryTreeTest {
 		System.out.println("-------------------------------------------------------------------------------------------");
 		System.out.println("-----------------Convert Existing Binary tree to balanced binary tree log(n)---------------");
 		
+		//int[] avlInput = {4,3,1,7,5,2,6};
+		int[] avlInput = inputData.stream()
+				.mapToInt((Integer k) -> k.intValue())
+				.toArray();
+		AVLTree avlTree = new AVLTree(1);
+		avlTree.insertValues(avlInput);
+		avlTree.print();
+		
+		updateNode(nodeTemp, 5);
+		//System.out.println("Updated Temp Node: " + nodeTemp.getLeft().getData());
+		
 	}
 	
 	public static void insertData(BinaryNode rootNode, int value) {
 		rootNode.insert(value);
+	}
+	
+	public static void updateNode(Node node, int value) {
+		node.setLeft(new Node(value));
 	}
 }

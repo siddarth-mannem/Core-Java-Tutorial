@@ -20,60 +20,90 @@ public class AVLTree {
 		
 	}
 	
-	public void insert(int value) {
-	    
-		if(root == null) {
-			root = new Node(value);
-		} else {
-			insert(value, root);
-		}
-	}
-
-	public void insert(int value, Node node) {
-	    
-		if(value < node.getData()) {
-			if(node.getLeft() == null) {
-				node.setLeft(new Node(value));
-			} else {
-				insert(value, node.getLeft());
-			}
-		} else {
-			if(node.getRight() == null) {
-				node.setRight(new Node(value));
-			} else {
-				insert(value, node.getRight());
-			}
-		}
-		int balHeight = balancedHeight(node);
-		if(Math.abs(balHeight) > getThreshold()) {
-			if(balHeight > 1) {					//	A 
-											//	  / 	
-										//		 B		 BT
-				 Node temp = node; 
-				 node = node.getLeft();
-				 temp.setLeft(node.getRight());
-				 node.setRight(temp);
-			} else {
-				
-			}
-		}
-	}
-	
-	
 	public void insertValues(int[] items) {
 		if(items == null || items.length == 0) {
 			return;
 		}
-		//Node root = getRoot() != null ? getRoot() : new Node();
 		for(int i = 0; i< items.length; i++) {
 			insert(items[i]);
 		}
 	}
 	
+	public void insert(int value) {
+	    
+		if(getRoot() == null) {
+			this.root = new Node(value);
+		} else {
+			this.root = insert(value, getRoot());
+			System.out.println("");
+		}
+	}
+
+	/**
+	 *  //			A 
+		//		  / 	
+		//		 B		 B(temp)
+		// 		  \
+		//		   C
+	 * @param value
+	 * @param node
+	 * @return
+	 */
+	public Node insert(int value, Node node) {
+	    
+		if(value < node.getData()) {
+			if(node.getLeft() == null) {
+				node.setLeft(new Node(value));
+			} else {
+				node.setLeft(insert(value, node.getLeft()));
+			}
+		} else {
+			if(node.getRight() == null) {
+				node.setRight(new Node(value));
+			} else {
+				node.setRight(insert(value, node.getRight()));
+			}
+		}
+		int balHeight = balancedHeight(node);
+		if(Math.abs(balHeight) > getThreshold()) {
+			if(balHeight > 1) {
+
+				// Check for left rotation
+				if(node.getLeft() != null && node.getLeft().getLeft() == null && node.getLeft().getRight() != null ) {
+					Node temp = node.getLeft();
+					
+					node.setLeft(node.getLeft().getRight());
+					temp.setRight(null);
+					node.getLeft().setLeft(temp);
+				}
+				
+				Node temp = node;
+				node = node.getLeft();
+				temp.setLeft(node.getRight());
+				node.setRight(temp);
+				 
+			} else {
+				// Check for right rotation
+				if(node.getRight() != null && node.getRight().getRight() == null && node.getRight().getLeft() != null ) {
+					Node temp = node.getRight();
+					node.setRight(node.getRight().getLeft());
+					temp.setLeft(null);
+					node.getRight().setRight(temp);
+				}
+				Node temp = node;
+				node = node.getRight();
+				temp.setRight(node.getLeft());
+				node.setLeft(temp);
+			}
+		}
+		
+		return node;
+	}
+
 	private int balancedHeight(Node node) {
 		
-		int leftSubTreeHeight = heightUtil(root.getLeft());
-		int rightSubTreeHeight = heightUtil(root.getRight());
+		int leftSubTreeHeight = heightUtil(node.getLeft());
+		int rightSubTreeHeight = heightUtil(node.getRight());
 		return leftSubTreeHeight - rightSubTreeHeight;
 	}
 	
@@ -86,12 +116,24 @@ public class AVLTree {
 
 		return Math.max(left, right) + 1;
 	}
+	
+	
+	
+	/**
+	 * It prints entire Tree in a hierarchy tree structure
+	 * 
+	 */
+	public void print() {
+
+		TreeUtil.print(getRoot());
+	}
+
 
 	/**
 	 * @return the root
 	 */
 	public Node getRoot() {
-		return root;
+		return this.root;
 	}
 
 	/**
