@@ -37,7 +37,7 @@ public class BinaryTreeTest {
 		
 		System.out.println("Binary Tree1 InOrder print *** ");
 		List<Integer> orderedNodes = rootNode.collectInOrder();
-		orderedNodes.forEach(System.out::println);
+		orderedNodes.forEach(k -> {System.out.print(k + ", ");});System.out.println("");
 		
 		BinaryNode node = rootNode.find(findValue, 1);
 		System.out.println("Find a Node with value " + findValue + " : " + node.getData());
@@ -73,21 +73,21 @@ public class BinaryTreeTest {
 				break;
 			}
 		}
-
-		System.out.println("Swap Nodes at Kth Level ----------------------------------");
-		System.out.println("---------------Tree top view Before Swap-----------------");
+		System.out.println("-------------------------------------------------------------------------------------------");
+		System.out.println("-----------------Swap Nodes at Kth Level---------------------------------------------------");
+		System.out.println("              -> Before Swap");
 		tree3.print();
 
 		tree3.swapNodesFromLevel(2);
-		System.out.println("Print inorder after swapping : ");
-		tree3.collectInOrder().forEach(System.out::println);
-		System.out.println("---------------Tree top view-----------------");
-		//tree3.printTree();
+		System.out.println("              -> After Swap-----------------");
 		tree3.print();
-		
-		tree3.printNodesAtLevel(5);
-		
-		System.out.println("-----------------Convert BST to GST----------------------");
+		System.out.println("              -> Print inorder after swapping : ");
+		System.out.print("              -> ");tree3.collectInOrder().forEach(k -> {System.out.print(k + ", ");});System.out.println("");
+		System.out.println("-------------------------------------------------------------------------------------------");
+		System.out.println("-----------------Print Nodes at Nth Level when N<=height-----------------------------------");
+		tree3.printNodesAtLevel(2);
+		System.out.println("-------------------------------------------------------------------------------------------");
+		System.out.println("-----------------Convert BST to GST--------------------------------------------------------");
 		BinaryTree tree4 = new BinaryTree();
 		 
 		for(int k = 0; k< inputData.size(); k++) {
@@ -96,46 +96,42 @@ public class BinaryTreeTest {
 				break;
 			}
 		}
-		System.out.println("-----with new instance-------");
+		System.out.println("              -> with new instance-------");
 		BinaryTree newGstTree = tree4.bstToGst1();
 		newGstTree.print();
-		System.out.println("-----without new instance-------");
+		System.out.println("              -> with OUT new instance-------");
 		tree4.bstToGst();
 		tree4.print();
 		
-		
-		System.out.println("-----------------Balanced Binary tree from sorted Arrays----------------------");		
+		System.out.println("-------------------------------------------------------------------------------------------");
+		System.out.println("-----------------Balanced Binary tree from sorted Arrays-----------------------------------");		
 		List<Integer> inputData2 = new ArrayList<>(inputData);
 		Collections.sort(inputData2);
 		BalancedBinaryTreeFromSortedArray balancedTree1 = new BalancedBinaryTreeFromSortedArray();
-		balancedTree1.sortedArray(inputData2.stream().mapToInt((Integer k) -> k.intValue()).toArray());
+		balancedTree1.sortedArray(inputData2.stream()
+									.mapToInt((Integer k) -> k.intValue())
+									.toArray()
+								);
 		balancedTree1.print();
-		System.out.println("balancedTree1 is Balanced Tree : " + balancedTree1.isBalancedBinaryTree());
+		System.out.println("              -> balancedTree1 is Balanced Tree : " + balancedTree1.isBalancedBinaryTree());
 		
-		System.out.println("-----------------Convert Existing Binary tree to balanced binary tree----------------------");
+		System.out.println("-------------------------------------------------------------------------------------------");
+		System.out.println("-----------------Convert Existing Binary tree to balanced binary tree O(n)-----------------");
 		BinaryTree tree5 = new BinaryTree();
 		 
 		for(int k = 0; k< inputData.size(); k++) {
 			tree5.insert(inputData.get(k));
-			if(k == 7) {
-				break;
-			}
 		}
-		// [14,9,16,2,13]
-//		int[] nums = {14,9,16,2,13};
-//		for(int k = 0; k<nums.length; k++) {
-//			tree5.insert(nums[k]);
-//		}
 		
-		System.out.println("-----Before balancing a Tree -----");
+		System.out.println("              -> Before balancing a Tree -----");
 		tree5.print();
-		System.out.println("-----After balancing a Tree -----");
+		System.out.println("              -> After balancing a Tree -----");
 		tree5.balanceBinaryTree();
 		tree5.print();
 		tree5.printPreOrder();
 		System.out.println("tree5 is Balanced Tree : " + tree5.isBalancedBinaryTree());
-		
-		System.out.println("--------------------------------------------------------");
+		System.out.println("-------------------------------------------------------------------------------------------");
+		System.out.println("-----------------Convert Existing Binary tree to balanced binary tree log(n)---------------");
 		
 	}
 	

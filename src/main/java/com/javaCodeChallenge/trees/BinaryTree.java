@@ -41,7 +41,7 @@ public class BinaryTree {
 
 	public void insert(int value, Node node) {
 
-		if (value <= node.getData()) {
+		if (value < node.getData()) {
 			if(node.getLeft() == null) {
 				node.setLeft(new Node(value));
 			} else {
@@ -238,13 +238,13 @@ public class BinaryTree {
 			return false;
 		}
 		if(root.getLeft() != null) {
-			if( root.getLeft().getData() > root.getData()) {
+			if( root.getLeft().getData() >= root.getData()) {
 				return false;
 			}
 		}
 
 		if(root.getRight() != null) {
-			if (root.getRight().getData() <= root.getData()) {
+			if (root.getRight().getData() < root.getData()) {
 				return false;
 			}
 		}
@@ -268,7 +268,7 @@ public class BinaryTree {
 
 	private int heightUtil(Node root) {
 		if (root == null) {
-			return 0;
+			return -1;
 		}
 		int left = heightUtil(root.getLeft());
 		int right = heightUtil(root.getRight());
@@ -420,7 +420,7 @@ public class BinaryTree {
 	
 	/**
 	 * Q: Balance a Binary Search Tree
-	 * Convert existing binary tree to balanced Binary Tree.
+	 * Convert existing binary tree to balanced Binary Tree by sorting list of nodes. That means O(n)
 	 * 
 	 * Ref: https://leetcode.com/problems/balance-a-binary-search-tree/
 	 */
@@ -446,6 +446,24 @@ public class BinaryTree {
 		currentNode.setLeft(currentLeftNode);
 		currentNode.setRight(currentRightNode);
 		return currentNode;		
+	}
+	
+	/**
+	 * Q: Self Balance a Binary Search Tree OR
+	 * Q: Convert existing binary tree to balanced Binary Tree with out sorted list of nodes. That means O(log(n)) OR
+	 * Q: AVL Tree (Adelson-Velsky and Landis)
+	 * 
+	 * Ref: https://leetcode.com/problems/balance-a-binary-search-tree/
+	 * 		https://www.youtube.com/watch?v=vRwi_UcZGjU
+	 * 
+	 */
+	private void balanceBinaryTree2() {
+		
+	}
+	
+	
+	public void insertAVL(int[] items, int threshold) {
+	    
 	}
 	
 	/**
