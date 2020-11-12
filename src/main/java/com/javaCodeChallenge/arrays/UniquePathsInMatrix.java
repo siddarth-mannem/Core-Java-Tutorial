@@ -14,7 +14,7 @@ public class UniquePathsInMatrix {
 	public static void main(String[] args) {
 
 		int r = 2, c = 3;
-		int[][] matrix = new int[r][c];
+		//int[][] matrix = new int[r][c];
 		//System.out.println(matrix.length);
 		//System.out.println(matrix[2].length);
 		//System.out.println(uniquePaths(matrix, 0, 0));

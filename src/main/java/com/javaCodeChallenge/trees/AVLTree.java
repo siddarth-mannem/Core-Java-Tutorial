@@ -71,12 +71,12 @@ public class AVLTree {
 				// Check for left rotation
 				if(node.getLeft() != null && node.getLeft().getLeft() == null && node.getLeft().getRight() != null ) {
 					Node temp = node.getLeft();
-					
 					node.setLeft(node.getLeft().getRight());
 					temp.setRight(null);
 					node.getLeft().setLeft(temp);
 				}
 				
+				// Right Rotate
 				Node temp = node;
 				node = node.getLeft();
 				temp.setLeft(node.getRight());
@@ -90,6 +90,8 @@ public class AVLTree {
 					temp.setLeft(null);
 					node.getRight().setRight(temp);
 				}
+				
+				// Left Rotate
 				Node temp = node;
 				node = node.getRight();
 				temp.setRight(node.getLeft());

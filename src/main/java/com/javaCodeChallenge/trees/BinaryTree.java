@@ -149,7 +149,7 @@ public class BinaryTree {
 	 * Solution: 
 	 * 		1)	convert Tree1 to InOrder List
 	 * 		2)	Traverse Tree2 also in InOrder.
-	 * 		3)	Now compare first Element of Tree2 node data with Tree1 InOrder list firts element.
+	 * 		3)	Now compare first Element of Tree2 node data with Tree1 InOrder list first element.
 	 * 		4)	return false if two element's data is not matching
 	 *		5)	IF matches then delete the Tree1 List first element and repeat the step 2,3,4 through recursive method
 	 * 

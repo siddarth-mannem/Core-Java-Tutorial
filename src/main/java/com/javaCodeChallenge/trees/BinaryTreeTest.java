@@ -144,7 +144,7 @@ public class BinaryTreeTest {
 		avlTree.print();
 		
 		updateNode(nodeTemp, 5);
-		//System.out.println("Updated Temp Node: " + nodeTemp.getLeft().getData());
+		System.out.println("Updated Temp Node: " + nodeTemp.getLeft().getData());
 		
 	}
 	
