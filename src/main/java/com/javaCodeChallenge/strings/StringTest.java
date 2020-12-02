@@ -68,6 +68,21 @@ public class StringTest {
 			}
 		}
 		System.out.println(strs);
+		
+		
+		System.out.println("---------------------------------------");
+		
+//		String logs = "88 99 200";
+//		String[] numbers = logs.split("\\s+");
+//		for(String num : numbers) {
+//			System.out.println(num);
+//		}
+		String regex = "\\s+$";
+		String str3 = "Hello  - - world  - - Siddarth";
+		String ans = str3.substring(0 , str3.indexOf("- -"));
+		System.out.println(ans + "$");
+		System.out.println(ans.replaceAll(regex, "") + "$");
+		System.out.println(ans);
 	}
 
 }

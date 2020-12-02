@@ -1,5 +1,6 @@
 package com.javaCodeChallenge.trees;
 
+
 public class AVLTree {
 	
 	private Node root;
@@ -81,7 +82,7 @@ public class AVLTree {
 				node = node.getLeft();
 				temp.setLeft(node.getRight());
 				node.setRight(temp);
-				 
+				
 			} else {
 				// Check for right rotation
 				if(node.getRight() != null && node.getRight().getRight() == null && node.getRight().getLeft() != null ) {

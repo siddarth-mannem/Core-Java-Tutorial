@@ -21,7 +21,7 @@ public class FileReaderWriterTest {
 		BufferedWriter bw = null;
 		
 		try {
-			fielStream = new FileInputStream("/Users/siddarth/Documents/workspace/CoreJavaTut/bin/com/javaTutorial/classesAndObjects/java.txt");
+			fielStream = new FileInputStream("C:\\Users\\Siddarth\\workspace\\Core-Java-Tutorial\\src\\main\\java\\com\\javaTutorial\\classesAndObjects\\java.txt");
 			InputStreamReader inputStremReader = new InputStreamReader(fielStream);
 			BufferedReader br = new BufferedReader(inputStremReader);	
 			
@@ -30,7 +30,7 @@ public class FileReaderWriterTest {
 			}
 
 			
-			File fileToWrite = new File("/Users/siddarth/Documents/workspace/CoreJavaTut/bin/com/javaTutorial/classesAndObjects/sample.txt");
+			File fileToWrite = new File("C:\\Users\\Siddarth\\workspace\\Core-Java-Tutorial\\src\\main\\java\\com\\javaTutorial\\classesAndObjects\\java1.txt");
 			
 			System.out.println(fileToWrite.getAbsolutePath());
 			
