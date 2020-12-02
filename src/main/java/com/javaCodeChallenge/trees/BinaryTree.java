@@ -201,16 +201,10 @@ public class BinaryTree {
 		if(currentLevel >= swapFromLevel) {
 			Node temp = node.getLeft();
 			node.setLeft(node.getRight());
-			node.setRight(temp);
-			if((node.getLeft() != null && node.getLeft().getLeft() != null) || 
-					(node.getRight() != null && node.getRight().getRight() != null)) {
-				swapNodesFromLevel(currentLevel + 1, swapFromLevel, node.getLeft());
-				swapNodesFromLevel(currentLevel + 1, swapFromLevel, node.getRight());
-			}
-		} else {
-			swapNodesFromLevel(currentLevel + 1, swapFromLevel, node.getLeft());
-			swapNodesFromLevel(currentLevel + 1, swapFromLevel, node.getRight());
-		}
+			node.setRight(temp);	
+		}		
+		swapNodesFromLevel(currentLevel + 1, swapFromLevel, node.getLeft());
+		swapNodesFromLevel(currentLevel + 1, swapFromLevel, node.getRight());
 	}
 
 	/**
