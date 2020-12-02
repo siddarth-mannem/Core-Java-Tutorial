@@ -170,7 +170,7 @@ public class BinaryTree {
 
 		if(!inOrderedList.get(0).equals(node.getData())) {
 			return false;
-		} else {
+		} else {  
 			inOrderedList.remove(0);
 		}
 
@@ -189,27 +189,27 @@ public class BinaryTree {
 	 */
 	public void swapNodesFromLevel(int level) {
 
-		swapNodesFromLevel(level, getRoot());
+		swapNodesFromLevel(1, level, getRoot());
 	}
 
-	public void swapNodesFromLevel(int level, Node node) {
+	public void swapNodesFromLevel(int currentLevel, int swapFromLevel, Node node) {
 
 		if (node == null) {
 			return;
 		}
 
-		if((level-1) <= 1) {
+		if(currentLevel >= swapFromLevel) {
 			Node temp = node.getLeft();
 			node.setLeft(node.getRight());
 			node.setRight(temp);
 			if((node.getLeft() != null && node.getLeft().getLeft() != null) || 
 					(node.getRight() != null && node.getRight().getRight() != null)) {
-				swapNodesFromLevel(level - 1, node.getLeft());
-				swapNodesFromLevel(level - 1, node.getRight());
+				swapNodesFromLevel(currentLevel + 1, swapFromLevel, node.getLeft());
+				swapNodesFromLevel(currentLevel + 1, swapFromLevel, node.getRight());
 			}
 		} else {
-			swapNodesFromLevel(level - 1, node.getLeft());
-			swapNodesFromLevel(level - 1, node.getRight());
+			swapNodesFromLevel(currentLevel + 1, swapFromLevel, node.getLeft());
+			swapNodesFromLevel(currentLevel + 1, swapFromLevel, node.getRight());
 		}
 	}
 
