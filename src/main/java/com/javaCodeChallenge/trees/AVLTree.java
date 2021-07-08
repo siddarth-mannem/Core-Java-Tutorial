@@ -1,6 +1,15 @@
 package com.javaCodeChallenge.trees;
 
 
+/**
+ * Q: Self Balance a Binary Search Tree OR
+ * Q: Convert existing binary tree to balanced Binary Tree with out sorted list of nodes. That means O(log(n)) OR
+ * Q: AVL Tree (Adelson-Velsky and Landis)
+ * 
+ * Ref: https://leetcode.com/problems/balance-a-binary-search-tree/
+ * 		https://www.youtube.com/watch?v=vRwi_UcZGjU
+ * 
+ */
 public class AVLTree {
 	
 	private Node root;
