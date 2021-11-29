@@ -11,16 +11,21 @@ public class CustomLinkedListTest {
 		names.add("Harsha");
 		names.add("Siddharth");
 		names.add(null);
-		names.add("");
+		names.add("<>");
 		names.add("Java");
 		for(String name : names) {
 			System.out.println(name);
-			if(name == null ) {
-				throw new NullPointerException();
-
-			}
+//			if(name == null ) {
+//				throw new NullPointerException();
+//
+//			}
 		}
-
+		System.out.println("Peek : " + names.peek());
+		System.out.println("PeekFirst : " + names.peekFirst());
+		System.out.println("Pop : " + names.pop());
+		System.out.println("Poll : " + names.poll());
+		System.out.println("Remove : " + names.remove());
+		System.out.println("Peek after change : " + names.peek());
 		System.out.println("----------------------------------------------");
 		
 		CustomLinkedList namesList = new CustomLinkedList();
