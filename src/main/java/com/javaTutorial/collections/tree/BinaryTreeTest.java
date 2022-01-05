@@ -1,8 +1,13 @@
 package com.javaTutorial.collections.tree;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.PriorityQueue;
+import java.util.Queue;
 import java.util.Random;
+
+import com.javaCodeChallenge.linkedList.ListNode;
 
 public class BinaryTreeTest {
 
@@ -86,4 +91,40 @@ public class BinaryTreeTest {
 	public static void insertData(BinaryNode rootNode, int value) {
 		rootNode.insert(value);
 	}
+	
+	
+	public List<List<Integer>> levelOrder(Node root) {
+        
+        List<List<Integer>> list = new ArrayList<>();
+        Queue<Node> nextToVisit = new PriorityQueue<Node>();
+        nextToVisit.add(root);
+        levelOrder(list, nextToVisit);
+        
+        return list;
+    }
+    
+    private void levelOrder(List<List<Integer>> mainList, Queue<Node> nextToVisit) {
+        
+    	Queue<Node> nextToVisit2 = new LinkedList<>();
+    	List<Integer> levelList = new ArrayList<>();
+    	
+        while(!nextToVisit.isEmpty()) {
+        	Node node = nextToVisit.poll();
+        	levelList.add(node.getData());
+        	
+        	if(node.getLeft() != null) {
+        		nextToVisit2.add(node.getLeft());
+        	}
+        	
+        	if(node.getRight() != null) {
+        		nextToVisit2.add(node.getRight());
+        	}
+        }
+        
+        mainList.add(levelList);
+        
+        if(!nextToVisit2.isEmpty()) {
+        	levelOrder(mainList, nextToVisit2);
+        }
+    }
 }

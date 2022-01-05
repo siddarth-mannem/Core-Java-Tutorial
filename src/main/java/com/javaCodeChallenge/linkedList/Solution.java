@@ -17,8 +17,28 @@ public class Solution {
 		//			currentNode = currentNode.next != null ? currentNode.next: null;
 		//		}
 		solution.updatedChain(rootNode, 4);
-
+		
+		System.out.println("Merge 2 Sorted LinkedList");
+		// Merge 2 Sorted LinkedList
+		
+		ListNode a = new ListNode(1);
+		a.next = new ListNode(3);
+		a.next.next = new ListNode(5);
+		
+		ListNode b = new ListNode(2);
+		b.next = new ListNode(4);
+		b.next.next = new ListNode(7);
+		
+		ListNode mergedNode = solution.mergeTwoSortedLinkedList(a, b);
+		
+		while(mergedNode != null) {
+			System.out.println(mergedNode.val);
+			mergedNode = mergedNode.next;
+		}
+			
 	}
+	
+	
 
 	public ListNode updatedChain(ListNode head, int k) {
 
@@ -171,6 +191,45 @@ public class Solution {
 		}
 		return root;
 	}
+	
+	
+	/**
+	 * Merched two sorted linked list
+	 * @param a
+	 * @param b
+	 * @return
+	 */
+	public ListNode mergeTwoSortedLinkedList(ListNode a, ListNode b) {
+	       
+		ListNode sampleNode = new ListNode(0);
+	       
+	       // a = [1,3,5]
+	       // b = [2,4,7]       
+		ListNode finalTail = sampleNode;
+	       while(true) {
+	           
+	           if(a == null) {
+	               finalTail = b;
+	               break;
+	           } 
+	           if(b == null) {
+	               finalTail = a;
+	               break;
+	           }
+	           if(a.val <= b.val ) {
+	               finalTail.next = a;
+	               a = a.next;
+	           } else {
+	               finalTail.next = b;
+	               b = b.next;
+	           }
+	           
+	           finalTail = finalTail.next;
+	           
+	       }
+	       
+	       return sampleNode.next;
+	   }
 
 	//	List<String> names = new ArrayList<>();
 	//	String name = "Siddhu";

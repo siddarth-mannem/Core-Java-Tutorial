@@ -32,7 +32,7 @@ public class BinaryNode {
 				left = new BinaryNode(value);
 			} else {
 				left.insert(value);
-			} 
+			}
 		} else {
 			if( right == null) {
 				right = new BinaryNode(value);
